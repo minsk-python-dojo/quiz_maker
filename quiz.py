@@ -35,4 +35,3 @@ class TestRunner:
     def __init__(self, question_set: QuestionSet):
         self.question_set = question_set
         self.correct_answers_count: int = 0
-
