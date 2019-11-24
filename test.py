@@ -18,7 +18,7 @@ def test_data_file() -> None:
     yield 'disciplines.json'
     os.remove('disciplines.json')
 
-def test_discipline_data_returns_dict_from_json(test_data_file):
+def test_discipline_data_returns_dict_from_json():
     app = Application('.')
     expected = [
         'string1',
