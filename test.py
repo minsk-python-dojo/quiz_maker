@@ -5,7 +5,6 @@ import pytest
 
 from app import Application
 
-
 @pytest.fixture
 def test_data_file() -> None:
     disciplines = [
@@ -19,7 +18,7 @@ def test_data_file() -> None:
     os.remove("disciplines.json")
 
 
-def test_discipline_data_returns_dict_from_json():
+def test_discipline_data_returns_dict_from_json(test_data_file):
     app = Application(".")
     expected = [
         "string1",
@@ -28,3 +27,6 @@ def test_discipline_data_returns_dict_from_json():
     ]
     result = app.parse_disciplines()
     assert expected == result
+
+def test_read_quiz_data_returns_list_of_dicts():
+    pass

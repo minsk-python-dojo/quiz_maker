@@ -8,7 +8,7 @@ from app import Application
 
 
 def main(data_path: str) -> None:
-    quiz_app = Application(data_path)
+    quiz_app = Application(data_path, "quiz_data.json")
     quiz_app.run()
 
 
