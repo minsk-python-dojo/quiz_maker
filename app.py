@@ -3,6 +3,7 @@ import json
 from typing import List, Set
 from menu_prompt import MenuPrompt
 from quiz_item import QuizItem
+from question_prompt import QuestionPrompt
 
 
 class Application:
@@ -32,7 +33,7 @@ class Application:
         questions: List[QuizItem] = [
             quiz_item for quiz_item in self.quiz_data if quiz_item.topic == chosen_topic
         ]
-        print(questions)
+        QuestionPrompt(questions).ask_question()
 
     def parse_disciplines(self):
         disciplines_data_path = os.path.join(self.data_path, "disciplines.json")
