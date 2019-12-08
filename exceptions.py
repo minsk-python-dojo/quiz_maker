@@ -1,0 +1,2 @@
+class SettingsAttributesError(Exception):
+    pass
