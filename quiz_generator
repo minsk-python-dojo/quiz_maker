@@ -1,0 +1,40 @@
+import json
+from typing import List, Tuple, Dict, Union
+
+UNKNOWN_ANSWER = 'Unknown answer'
+UNKNOWN_QUIZ_ITEM = {
+	'discipline': 'Unknown discipline',
+    'topic': 'Unknown topic',
+    'question': 'Unknown question',
+    'answers': [UNKNOWN_ANSWER,],
+    'correct_answer': UNKNOWN_ANSWER,
+	}
+
+
+def main():
+	generate_quiz_data()
+
+def gen_quiz_item(item: int, number_answers: int) -> Tuple[str, Union[str, List[str]]]:
+	for key, value in UNKNOWN_QUIZ_ITEM.items():
+		new_value = None
+		if type(value) == str:
+			new_value = f'{value}{item}'
+		elif type(value) == list:
+			[new_value, *rest] = value
+			new_value = [f'{new_value}{answer}' for answer in range(1, number_answers)]
+		yield key, new_value
+
+def gen_quiz_data(number_quiz_items: int, number_answers: int) -> Dict[str, Union[str, List[str]]]:
+	for item in range(1, number_quiz_items):
+		yield dict(gen_quiz_item(item, number_answers))
+
+def generate_quiz_data():
+	number_quiz_items: int = int(input('Enter number quiz items: '))
+	number_answers: int = int(input('Enter number answers: '))
+	quiz_items: List[Dict[str, Union[str, List[str]]]] = list(gen_quiz_data(number_quiz_items, number_answers))
+	with open('quiz_data.json', 'w') as quiz_data_file:
+		json.dump(quiz_items, quiz_data_file)
+
+
+if __name__ == "__main__":
+    main()
